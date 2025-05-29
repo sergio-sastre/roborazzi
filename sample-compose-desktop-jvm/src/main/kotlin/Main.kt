@@ -11,7 +11,7 @@ import androidx.compose.ui.window.application
 
 @Composable
 @Preview
-fun App() {
+fun HelloWorldButton() {
   var text by remember { mutableStateOf("Hello, World!") }
 
   MaterialTheme {
@@ -30,6 +30,6 @@ fun App() {
 
 fun main() = application {
   Window(onCloseRequest = ::exitApplication) {
-    App()
+    HelloWorldButton()
   }
 }

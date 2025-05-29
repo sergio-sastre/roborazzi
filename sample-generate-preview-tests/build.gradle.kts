@@ -5,6 +5,7 @@ plugins {
   id("io.github.takahirom.roborazzi")
 }
 
+// ./gradlew :sample-generate-preview-tests:recordRoborazziDebug
 roborazzi {
   generateComposePreviewRobolectricTests {
     enable = true

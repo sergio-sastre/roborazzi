@@ -8,6 +8,7 @@ import com.github.takahirom.roborazzi.*
 import com.github.takahirom.roborazzi.ComposePreviewTester.TestParameter.JUnit4TestParameter
 import org.junit.rules.RuleChain
 import org.junit.rules.TestWatcher
+import sergio.sastre.composable.preview.scanner.core.annotations.RequiresShowStandardStreams
 import sergio.sastre.composable.preview.scanner.jvm.common.CommonComposablePreviewScanner
 import sergio.sastre.composable.preview.scanner.jvm.common.CommonPreviewInfo
 
@@ -32,9 +33,11 @@ class MultiplatformPreviewTester : ComposePreviewTester<JUnit4TestParameter<Comm
     )
   )
 
+  @OptIn(RequiresShowStandardStreams::class)
   override fun testParameters(): List<JUnit4TestParameter<CommonPreviewInfo>> {
     val options = options()
     return CommonComposablePreviewScanner()
+      .enableScanningLogs()
       .scanPackageTrees(*options.scanOptions.packages.toTypedArray())
       .getPreviews()
       .map {

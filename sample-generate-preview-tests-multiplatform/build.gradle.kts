@@ -6,6 +6,7 @@ plugins {
   id("org.jetbrains.compose")
 }
 
+// ./gradlew :sample-generate-preview-tests-multiplatform:recordRoborazziDebug
 roborazzi {
   generateComposePreviewRobolectricTests {
     enable = true
@@ -98,4 +99,9 @@ kotlin {
       }
     }
   }
+}
+
+tasks.withType<Test>().configureEach {
+  useJUnit()
+  testLogging.showStandardStreams = true
 }

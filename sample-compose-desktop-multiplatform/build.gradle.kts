@@ -28,6 +28,10 @@ kotlin {
       dependencies {
         implementation(project(":roborazzi-compose-desktop"))
         implementation(kotlin("test"))
+
+        implementation("junit:junit:4.13.2")
+        implementation("com.google.testparameterinjector:test-parameter-injector:1.16")
+        implementation("io.github.sergio-sastre.ComposablePreviewScanner:jvm:0.6.1")
       }
     }
   }
@@ -47,4 +51,9 @@ compose.desktop {
 tasks.withType<KotlinCompile>().configureEach {
   kotlinOptions {
   }
+}
+
+tasks.withType<Test>().configureEach {
+  useJUnit()
+  testLogging.showStandardStreams = true
 }

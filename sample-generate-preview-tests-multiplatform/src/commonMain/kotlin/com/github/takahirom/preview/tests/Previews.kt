@@ -1,5 +1,6 @@
 package com.github.takahirom.preview.tests
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -13,11 +14,19 @@ class StringProvider: PreviewParameterProvider<String> {
 @Preview
 @Composable
 fun PreviewNormal() {
-  Text("Multiplatform Preview is working!")
+  Text(
+    color = MaterialTheme.colorScheme.error,
+    text = "Multiplatform Preview is working!"
+  )
 }
+
 
 @Preview
 @Composable
-fun PreviewParameter(@PreviewParameter(StringProvider::class) name: String) {
-  Text("Multiplatform Preview with PreviewParameter is working, $name!")
+fun PreviewParameter(
+  @PreviewParameter(StringProvider::class) name: String
+) {
+  Text(
+    color = MaterialTheme.colorScheme.error,
+    text ="Multiplatform Preview with PreviewParameter is working, $name!")
 }

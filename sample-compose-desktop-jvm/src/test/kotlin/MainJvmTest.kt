@@ -11,7 +11,7 @@ class MainJvmTest {
     ROBORAZZI_DEBUG = true
     runDesktopComposeUiTest {
       setContent {
-        App()
+        HelloWorldButton()
       }
       val roborazziOptions = RoborazziOptions(
         compareOptions = RoborazziOptions.CompareOptions(changeThreshold = 0F)
