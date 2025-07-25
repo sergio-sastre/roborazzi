@@ -51,10 +51,19 @@ class MultiplatformPreviewTester : ComposePreviewTester<JUnit4TestParameter<Comm
   override fun test(testParameter: JUnit4TestParameter<CommonPreviewInfo>) {
     val preview = testParameter.preview
     val screenshotNameSuffix = preview.previewIndex?.let { "_" + preview.previewIndex }.orEmpty()
-    testParameter.composeTestRule.setContent {
+    val filePath =
+      DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH + "/" + preview.methodName + screenshotNameSuffix + ".png"
+    captureRoboImage(
+      filePath = filePath,
+      roborazziComposeOptions = RoborazziComposeOptions {
+        size(-1, -1)
+        background(
+          showBackground = true,
+          backgroundColor = 0xFF0000FF
+        )
+      }
+    ) {
       preview()
     }
-    testParameter.composeTestRule.onRoot()
-      .captureRoboImage(DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH + "/" + preview.methodName + screenshotNameSuffix + ".png")
   }
 }
