@@ -12,6 +12,7 @@ class StringProvider: PreviewParameterProvider<String> {
 }
 
 @Preview
+@Preview(widthDp = 400, heightDp = 400, showBackground = true, backgroundColor = 0xFF0000FF)
 @Composable
 fun PreviewNormal() {
   Text(

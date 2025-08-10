@@ -2,16 +2,19 @@ package com.github.takahirom.preview.tests
 
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onRoot
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.github.takahirom.roborazzi.*
 import com.github.takahirom.roborazzi.ComposePreviewTester.TestParameter.JUnit4TestParameter
 import org.junit.rules.RuleChain
 import org.junit.rules.TestWatcher
+import sergio.sastre.composable.preview.scanner.common.CommonComposablePreviewScanner
+import sergio.sastre.composable.preview.scanner.common.CommonPreviewInfo
+import sergio.sastre.composable.preview.scanner.common.screenshotid.CommonPreviewScreenshotIdBuilder
 import sergio.sastre.composable.preview.scanner.core.annotations.RequiresShowStandardStreams
-import sergio.sastre.composable.preview.scanner.jvm.common.CommonComposablePreviewScanner
-import sergio.sastre.composable.preview.scanner.jvm.common.CommonPreviewInfo
 
+/**
+ * Execute ./gradlew :sample-generate-preview-tests-multiplatform:recordRoborazziDebug
+ */
 @OptIn(ExperimentalRoborazziApi::class)
 class MultiplatformPreviewTester : ComposePreviewTester<JUnit4TestParameter<CommonPreviewInfo>> {
   override fun options(): ComposePreviewTester.Options = super.options().copy(
@@ -50,16 +53,17 @@ class MultiplatformPreviewTester : ComposePreviewTester<JUnit4TestParameter<Comm
 
   override fun test(testParameter: JUnit4TestParameter<CommonPreviewInfo>) {
     val preview = testParameter.preview
-    val screenshotNameSuffix = preview.previewIndex?.let { "_" + preview.previewIndex }.orEmpty()
-    val filePath =
-      DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH + "/" + preview.methodName + screenshotNameSuffix + ".png"
+    val previewInfo = preview.previewInfo
+    val screenshotName = CommonPreviewScreenshotIdBuilder(preview).build()
+    val filePath = "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/$screenshotName.png"
     captureRoboImage(
       filePath = filePath,
       roborazziComposeOptions = RoborazziComposeOptions {
-        size(-1, -1)
+        size(previewInfo.widthDp, previewInfo.heightDp)
+        locale(previewInfo.locale)
         background(
-          showBackground = true,
-          backgroundColor = 0xFF0000FF
+          showBackground = previewInfo.showBackground,
+          backgroundColor = previewInfo.backgroundColor
         )
       }
     ) {
