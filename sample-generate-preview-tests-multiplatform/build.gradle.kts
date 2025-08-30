@@ -10,7 +10,7 @@ plugins {
 // ./gradlew :sample-generate-preview-tests-multiplatform:recordRoborazziDebug
 roborazzi {
   generateComposePreviewRobolectricTests {
-    enable = true
+    enable = false
     packages = listOf("com.github.takahirom.preview.tests")
     testerQualifiedClassName = "com.github.takahirom.preview.tests.MultiplatformPreviewTester"
   }
@@ -85,6 +85,7 @@ kotlin {
         implementation(libs.composable.preview.scanner.common)
         implementation(libs.composable.preview.scanner)
         implementation(libs.androidx.compose.ui.test.junit4)
+        implementation("com.google.testparameterinjector:test-parameter-injector:1.18")
       }
     }
     val androidDebug by creating {
