@@ -137,24 +137,3 @@ fun PreviewDialog() {
     )
   }
 }
-
-
-
-
-
-
-
-
-// How does it work under the hood?
-// Among many advantages of Compose over XML Views,
-// one of them is tha it was developed
-// with testability in mind
-
-// To improve testability, the compose testing team decided to
-// provide the option to control the clock
-// that drives frames and recompositions during tests
-// by using the compose test rule
-
-// And that is what Roborazzi does under the hood
-// It uses Composable Preview Scanner to read the values passed via the annotation
-// and then
