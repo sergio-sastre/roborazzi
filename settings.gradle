@@ -29,10 +29,10 @@ include ':roborazzi-idea-plugin'
 
 include ':sample-android'
 include ':sample-android-without-compose'
-include ':sample-compose-desktop-multiplatform'
+include ':sample-generate-preview-desktop'
 include ':sample-compose-desktop-jvm'
-include ':sample-generate-preview-tests'
-include ':sample-generate-preview-tests-multiplatform'
+include ':sample-generate-preview-android'
+include ':sample-generate-preview-common'
 
 includeBuild("include-build") {
   dependencySubstitution {
