@@ -90,10 +90,10 @@ fun PreviewDarkMode() {
       advanceTimeMillis = 0L,
     ),
     ManualClockOptions(
-      advanceTimeMillis = 400L,
+      advanceTimeMillis = 900L,
     ),
     ManualClockOptions(
-      advanceTimeMillis = 500L,
+      advanceTimeMillis = 1000L,
     ),
   ]
 )
@@ -103,15 +103,14 @@ fun PreviewDelayed() {
   var isBlue by remember { mutableStateOf(false) }
   var counter by remember { mutableStateOf(0) }
 
-  // Trigger visibility change with a delay
-  LaunchedEffect(Unit) {
-    delay(500)
-    isBlue = true
-  }
   LaunchedEffect(Unit) {
     while (true) {
       delay(100)
       counter++
+      // after 1 second (1000 ms) -> blue
+      if (counter == 10) {
+        isBlue = true
+      }
     }
   }
 
@@ -124,7 +123,6 @@ fun PreviewDelayed() {
     CircularProgressIndicator()
   }
 }
-
 
 @Preview
 @Composable
