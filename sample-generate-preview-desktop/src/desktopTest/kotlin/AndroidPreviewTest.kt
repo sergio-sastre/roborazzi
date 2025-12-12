@@ -9,32 +9,32 @@ import com.google.testing.junit.testparameterinjector.TestParameterValuesProvide
 import io.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Test
 import org.junit.runner.RunWith
+import sergio.sastre.composable.preview.scanner.android.AndroidComposablePreviewScanner
+import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
 import sergio.sastre.composable.preview.scanner.core.annotations.RequiresShowStandardStreams
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
-import sergio.sastre.composable.preview.scanner.jvm.JvmAnnotationInfo
-import sergio.sastre.composable.preview.scanner.jvm.JvmAnnotationScanner
 
 /**
- * Record: ./gradlew :sample-generate-preview-desktop:recordRoborazziDesktop --tests "androidx.compose.desktop.ui.tooling.preview.DesktopPreviewTest"
- * Verify: ./gradlew :sample-generate-preview-desktop:verifyRoborazziDesktop --tests "androidx.compose.desktop.ui.tooling.preview.DesktopPreviewTest"
+ * Record: ./gradlew :sample-generate-preview-desktop:recordRoborazziDesktop --tests "androidx.compose.desktop.ui.tooling.preview.AndroidPreviewTest"
+ * Verify: ./gradlew :sample-generate-preview-desktop:verifyRoborazziDesktop --tests "androidx.compose.desktop.ui.tooling.preview.AndroidPreviewTest"
  */
-private class DesktopPreviewProvider : TestParameterValuesProvider() {
+private class AndroidPreviewProvider : TestParameterValuesProvider() {
   @OptIn(RequiresShowStandardStreams::class)
-  override fun provideValues(context: Context?): List<ComposablePreview<JvmAnnotationInfo>> =
-    JvmAnnotationScanner("annotations.DesktopScreenshot")
+  override fun provideValues(context: Context?): List<ComposablePreview<AndroidPreviewInfo>> =
+    AndroidComposablePreviewScanner()
       .enableScanningLogs()
       .scanPackageTrees("previews")
       .getPreviews()
 }
 
 
-private fun screenshotNameFor(preview: ComposablePreview<JvmAnnotationInfo>): String =
-  "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/${preview.declaringClass}.${preview.methodName}_Desktop.png"
+private fun screenshotNameFor(preview: ComposablePreview<AndroidPreviewInfo>): String =
+  "$DEFAULT_ROBORAZZI_OUTPUT_DIR_PATH/${preview.declaringClass}.${preview.methodName}_Android.png"
 
 @RunWith(TestParameterInjector::class)
-class DesktopPreviewTest(
-  @TestParameter(valuesProvider = DesktopPreviewProvider::class)
-  val preview: ComposablePreview<JvmAnnotationInfo>
+class AndroidPreviewTest(
+  @TestParameter(valuesProvider = AndroidPreviewProvider::class)
+  val preview: ComposablePreview<AndroidPreviewInfo>
 ) {
   @OptIn(ExperimentalTestApi::class)
   @Test

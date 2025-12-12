@@ -19,11 +19,11 @@ import sergio.sastre.composable.preview.scanner.common.CommonPreviewInfo
 import sergio.sastre.composable.preview.scanner.common.screenshotid.CommonPreviewScreenshotIdBuilder
 
 /**
- * Record: ./gradlew :sample-generate-preview-common:recordRoborazziDebug
- * Verify: ./gradlew :sample-generate-preview-common:recordRoborazziDebug
+ * Record: ./gradlew :sample-generate-preview-common:recordRoborazziDebug --tests "com.github.takahirom.preview.tests.CommonPreviewTest"
+ * Verify: ./gradlew :sample-generate-preview-common:recordRoborazziDebug --tests "com.github.takahirom.preview.tests.CommonPreviewTest"
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
-class RoborazziCommonComposablePreviewInvokeTests(
+class CommonPreviewTest(
   private val preview: ComposablePreview<CommonPreviewInfo>,
 ) {
   companion object {
@@ -46,7 +46,7 @@ class RoborazziCommonComposablePreviewInvokeTests(
       CommonPreviewScreenshotIdBuilder(preview)
         .doNotIgnoreMethodParametersType()
         .build()
-    }.png"
+    }_Common.png"
 
   @OptIn(ExperimentalRoborazziApi::class)
   @GraphicsMode(GraphicsMode.Mode.NATIVE)

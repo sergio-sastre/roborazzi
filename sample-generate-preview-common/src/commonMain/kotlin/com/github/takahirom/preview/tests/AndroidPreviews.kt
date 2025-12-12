@@ -3,12 +3,12 @@ package com.github.takahirom.preview.tests
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameter
-import org.jetbrains.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.tooling.preview.PreviewParameter as AndroidPreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider as AndroidPreviewParameterProvider
+import androidx.compose.ui.tooling.preview.Preview as AndroidPreview
 
-@Preview
-@Preview(
+@AndroidPreview
+@AndroidPreview(
   widthDp = 400,
   heightDp = 400,
   showBackground = true,
@@ -22,14 +22,14 @@ fun PreviewNormal() {
   )
 }
 
-class StringProvider: PreviewParameterProvider<String> {
+private class AndroidStringProvider: AndroidPreviewParameterProvider<String> {
   override val values: Sequence<String> =
     sequenceOf("Takahiro", "Sergio")
 }
-@Preview
+@AndroidPreview
 @Composable
 fun PreviewParameter(
-  @PreviewParameter(StringProvider::class) name: String
+  @AndroidPreviewParameter(AndroidStringProvider::class) name: String
 ) {
   Text(
     color = Color.Yellow,

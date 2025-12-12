@@ -22,6 +22,7 @@ kotlin {
         // (in a separate module for demo project and in testMain).
         // With compose.desktop.common you will also lose @Preview functionality
         implementation(compose.desktop.currentOs)
+        implementation(libs.androidx.compose.ui.tooling)
       }
     }
 
@@ -32,7 +33,8 @@ kotlin {
 
         implementation("junit:junit:4.13.2")
         implementation("com.google.testparameterinjector:test-parameter-injector:1.18")
-        implementation("io.github.sergio-sastre.ComposablePreviewScanner:jvm:0.6.1")
+        implementation("io.github.sergio-sastre.ComposablePreviewScanner:jvm:0.7.2")
+        implementation("com.github.sergio-sastre.ComposablePreviewScanner:android:1d37201845a56454ac4a9527748558fc5e953367")
       }
     }
   }
@@ -49,12 +51,13 @@ compose.desktop {
   }
 }
 
-tasks.withType<KotlinCompile>().configureEach {
-  kotlinOptions {
-  }
-}
-
 tasks.withType<Test>().configureEach {
   useJUnit()
   testLogging.showStandardStreams = true
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+  compilerOptions {
+    allWarningsAsErrors.set(false)
+  }
 }

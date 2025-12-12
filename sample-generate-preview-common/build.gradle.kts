@@ -1,6 +1,8 @@
 @file:OptIn(ExperimentalRoborazziApi::class)
 
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   id("org.jetbrains.kotlin.multiplatform")
@@ -66,7 +68,8 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api(compose.components.uiToolingPreview)
+        implementation(libs.androidx.compose.ui.tooling)
+        implementation(compose.components.uiToolingPreview)
       }
     }
     val androidMain by getting {
@@ -110,4 +113,10 @@ kotlin {
 tasks.withType<Test>().configureEach {
   useJUnit()
   testLogging.showStandardStreams = true
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+  compilerOptions {
+    allWarningsAsErrors.set(false)
+  }
 }
