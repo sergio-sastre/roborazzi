@@ -33,8 +33,8 @@ kotlin {
 
         implementation("junit:junit:4.13.2")
         implementation("com.google.testparameterinjector:test-parameter-injector:1.18")
-        implementation("io.github.sergio-sastre.ComposablePreviewScanner:jvm:0.7.2")
-        implementation("com.github.sergio-sastre.ComposablePreviewScanner:android:1d37201845a56454ac4a9527748558fc5e953367")
+        implementation(libs.composable.preview.scanner.jvm)
+        implementation(libs.composable.preview.scanner)
       }
     }
   }

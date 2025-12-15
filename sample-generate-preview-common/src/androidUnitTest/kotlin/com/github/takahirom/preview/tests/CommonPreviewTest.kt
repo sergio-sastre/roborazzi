@@ -20,7 +20,7 @@ import sergio.sastre.composable.preview.scanner.common.screenshotid.CommonPrevie
 
 /**
  * Record: ./gradlew :sample-generate-preview-common:recordRoborazziDebug --tests "com.github.takahirom.preview.tests.CommonPreviewTest"
- * Verify: ./gradlew :sample-generate-preview-common:recordRoborazziDebug --tests "com.github.takahirom.preview.tests.CommonPreviewTest"
+ * Verify: ./gradlew :sample-generate-preview-common:verifyRoborazziDebug --tests "com.github.takahirom.preview.tests.CommonPreviewTest"
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class CommonPreviewTest(

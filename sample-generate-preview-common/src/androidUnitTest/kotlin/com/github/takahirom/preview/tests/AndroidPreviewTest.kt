@@ -20,7 +20,7 @@ import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
 
 /**
  * Record: ./gradlew :sample-generate-preview-common:recordRoborazziDebug --tests "com.github.takahirom.preview.tests.AndroidPreviewTest"
- * Verify: ./gradlew :sample-generate-preview-common:recordRoborazziDebug --tests "com.github.takahirom.preview.tests.AndroidPreviewTest"
+ * Verify: ./gradlew :sample-generate-preview-common:verifyRoborazziDebug --tests "com.github.takahirom.preview.tests.AndroidPreviewTest"
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class AndroidPreviewTest(
